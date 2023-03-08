@@ -1,7 +1,18 @@
+import { useState } from "react";
+import Add from "./Add";
+import List from "./List";
+import Tabs from "./Tabs.js";
+
 const Home = () => {
+  const [filter, setFilter] = useState("all");
   return (
-    <div>
-      <h1 className="text-2xl">Home</h1>
+    <div className="mx-auto max-w-2xl p-4">
+      <h1 className="mt-8 text-center font-sans text-2xl font-semibold">
+        #todo
+      </h1>
+      <Tabs setFilter={setFilter} />
+      {filter !== "completed" && <Add />}
+      <List filter={filter} />
     </div>
   );
 };

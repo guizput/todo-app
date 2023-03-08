@@ -1,0 +1,31 @@
+import { useState } from "react";
+
+const Add = () => {
+  const [todo, setTodo] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(todo, "submitted");
+  };
+  return (
+    <div className="my-4">
+      <form className="flex items-center" onSubmit={(e) => handleSubmit(e)}>
+        <input
+          className="mr-4 flex-1 rounded-xl border-2 border-gray-300 px-2 py-4"
+          type="text"
+          placeholder="Add todo..."
+          value={todo}
+          onChange={(e) => setTodo(e.target.value)}
+          required
+        />
+        <button
+          className="rounded-lg bg-blue-500 px-8 py-4 text-white hover:bg-blue-600"
+          type="submit"
+        >
+          Add
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Add;
