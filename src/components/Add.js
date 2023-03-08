@@ -1,10 +1,18 @@
 import { useState } from "react";
 
-const Add = () => {
+const Add = ({ todos, setTodos }) => {
   const [todo, setTodo] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(todo, "submitted");
+    setTodos([
+      ...todos,
+      {
+        id: todos.length + 1,
+        completed: false,
+        body: todo,
+      },
+    ]);
+    setTodo("");
   };
   return (
     <div className="my-4">

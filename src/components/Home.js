@@ -11,7 +11,6 @@ const Home = () => {
         #todo
       </h1>
       <Tabs setFilter={setFilter} />
-      {filter !== "completed" && <Add />}
       <List filter={filter} />
     </div>
   );
