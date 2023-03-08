@@ -1,8 +1,9 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 
 const ListItem = ({ todo, todos, setTodos, filter }) => {
-  const handleInputChange = (index) => {
+  const handleInputChange = (id) => {
     let newArr = [...todos];
+    const index = newArr.findIndex((x) => x.id === id);
     newArr[index].completed = !newArr[index].completed;
     setTodos(newArr);
   };
@@ -21,7 +22,7 @@ const ListItem = ({ todo, todos, setTodos, filter }) => {
           name="todo-item"
           id={`todo-item-${todo.id}`}
           checked={todo.completed}
-          onChange={() => handleInputChange(todo.id - 1)}
+          onChange={() => handleInputChange(todo.id)}
         />
         <label
           className="peer-checked:line-through"
@@ -31,7 +32,7 @@ const ListItem = ({ todo, todos, setTodos, filter }) => {
         </label>
       </div>
       {filter === "completed" && (
-        <button onClick={() => handleDelete(todo.id - 1)} className="group">
+        <button onClick={() => handleDelete(todo.id)} className="group">
           <TrashIcon className="h-6 w-6 text-gray-400 group-hover:text-gray-500" />
         </button>
       )}

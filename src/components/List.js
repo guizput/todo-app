@@ -1,26 +1,19 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Add from "./Add.js";
 import ListItem from "./ListItem.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const List = ({ filter }) => {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      completed: false,
-      body: "do something here",
-    },
-    {
-      id: 2,
-      completed: true,
-      body: "do something here",
-    },
-    {
-      id: 3,
-      completed: true,
-      body: "do something here",
-    },
-  ]);
+  // Get local stotage
+  let data = JSON.parse(localStorage.getItem("todos"));
+
+  // Use it if exists or start from scratch
+  const [todos, setTodos] = useState(data || []);
+
+  useEffect(() => {
+    // Save each mod to local storage
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleDeleteAll = () => {
     let newArr = todos.filter((x) => !x.completed);
